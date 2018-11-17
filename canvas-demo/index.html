@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Designer</title>
+		<style>
+			.canvas-container {
+				border: 1px red solid;
+				width: 200px;
+				height: 200px;
+			}
+			.canvas-container canvas {
+				border: 1px black solid;
+				width: 400px;
+				height: 400px;
+				image-rendering: pixelated;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="canvas-container">
+			<canvas id='canvas' width='200' height='200'></canvas>
+		</div>
+	</body>
+	<script>
+		var img = new Image();
+		img.src = './rhino.png'; // 100*100
+		img.onload = function() {
+			draw(this);
+		};
+		
+		function draw(img) {
+			var canvas = document.getElementById('canvas');
+			var ctx = canvas.getContext('2d');
+			ctx.imageSmoothingEnabled = false;
+			ctx.mozImageSmoothingEnabled = false;
+			ctx.webkitImageSmoothingEnabled = false;
+			ctx.msImageSmoothingEnabled = false;
+			ctx.drawImage(img, 10, 10, 10, 10, 0, 0, 500, 500);
+		}
+	</script>
+</html>

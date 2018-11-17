@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<input type="button" value="全屏" onclick="toggleFullScreen()" />
+		<script>
+			var toggleFullScreen = function() {
+				if (isFullScreen()) {
+					closeFullScreen();
+				} else {
+					openFullScreen();
+				}
+			}
+			
+			var openFullScreen = function() {
+				var docElm = document.documentElement;
+				if (docElm.requestFullscreen) {//W3C
+					docElm.requestFullscreen();
+				} else if (docElm.mozRequestFullScreen) {//FireFox
+					docElm.mozRequestFullScreen();
+				} else if (docElm.webkitRequestFullScreen) {//Chrome等
+					docElm.webkitRequestFullScreen();
+				} else if (docElm.msRequestFullscreen) {//IE11
+					docElm.msRequestFullscreen();
+				}  
+			}  
+
+			var closeFullScreen = function() {
+				if (document.exitFullscreen) {
+					document.exitFullscreen();
+				} else if (document.mozCancelFullScreen) {
+					document.mozCancelFullScreen();
+				} else if (document.webkitCancelFullScreen) {
+					document.webkitCancelFullScreen();
+				} else if (document.msExitFullscreen) {
+					document.msExitFullscreen();
+				}  
+			}
+			
+			var isFullScreen = function(){
+				if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+					return true;
+				} else {
+					return false;
+				}
+			};
+			
+			document.addEventListener("fullscreenchange", function () {
+				fullscreenState.innerHTML = (document.fullscreen) ? "" : "not ";
+			}, false);
+
+			document.addEventListener("mozfullscreenchange", function () {
+				fullscreenState.innerHTML = (document.mozFullScreen) ? "" : "not ";
+			}, false);
+
+			document.addEventListener("webkitfullscreenchange", function () {
+				fullscreenState.innerHTML = (document.webkitIsFullScreen) ? "" : "not ";
+			}, false);
+
+			document.addEventListener("msfullscreenchange", function () {
+				fullscreenState.innerHTML = (document.msFullscreenElement) ? "" : "not ";
+			}, false);
+		</script>
+	</body>
+</html>
