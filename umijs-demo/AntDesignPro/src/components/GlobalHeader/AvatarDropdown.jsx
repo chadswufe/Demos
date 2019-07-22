@@ -7,24 +7,6 @@ import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
 
 class AvatarDropdown extends React.Component {
-  menuHeaderDropdown = (
-    <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
-      <Menu.Item key="center">
-        <Icon type="user" />
-        <FormattedMessage id="menu.account.center" />
-      </Menu.Item>
-      <Menu.Item key="settings">
-        <Icon type="setting" />
-        <FormattedMessage id="menu.account.settings" />
-      </Menu.Item>
-      <Menu.Divider />
-      <Menu.Item key="logout">
-        <Icon type="logout" />
-        <FormattedMessage id="menu.account.logout" />
-      </Menu.Item>
-    </Menu>
-  );
-
   onMenuClick = event => {
     const { key } = event;
     if (key === 'logout') {
@@ -43,8 +25,26 @@ class AvatarDropdown extends React.Component {
   render() {
     const { currentUser } = this.props;
 
+    const menuHeaderDropdown = (
+      <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
+        <Menu.Item key="center">
+          <Icon type="user" />
+          <FormattedMessage id="menu.account.center" />
+        </Menu.Item>
+        <Menu.Item key="settings">
+          <Icon type="setting" />
+          <FormattedMessage id="menu.account.settings" />
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item key="logout">
+          <Icon type="logout" />
+          <FormattedMessage id="menu.account.logout" />
+        </Menu.Item>
+      </Menu>
+    );
+
     return currentUser && currentUser.name ? (
-      <HeaderDropdown overlay={this.menuHeaderDropdown}>
+      <HeaderDropdown overlay={menuHeaderDropdown}>
         <span className={`${styles.action} ${styles.account}`}>
           <Avatar size="small" className={styles.avatar} src={currentUser.avatar} alt="avatar" />
           <span className={styles.name}>{currentUser.name}</span>

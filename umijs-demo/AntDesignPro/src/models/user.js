@@ -2,9 +2,11 @@ import { queryCurrent, query as queryUsers } from '@/services/user';
 
 const UserModel = {
   namespace: 'user',
+
   state: {
     currentUser: {},
   },
+
   effects: {
     *fetch(_, { call, put }) {
       const response = yield call(queryUsers);
@@ -22,6 +24,7 @@ const UserModel = {
       });
     },
   },
+
   reducers: {
     saveCurrentUser(state, action) {
       return { ...state, currentUser: action.payload || {} };
@@ -44,4 +47,5 @@ const UserModel = {
     },
   },
 };
+
 export default UserModel;

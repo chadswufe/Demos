@@ -6,6 +6,7 @@ import AvatarDropdown from './AvatarDropdown';
 import HeaderSearch from '../HeaderSearch';
 import SelectLang from '../SelectLang';
 import styles from './index.less';
+import NoticeIconView from './NoticeIconView';
 
 const searchHandler = value => {
   console.log('input', value);
@@ -32,7 +33,11 @@ const GlobalHeaderRight = props => {
         onSearch={searchHandler}
         onPressEnter={pressEnterHandler}
       />
-      <Tooltip title={formatMessage({ id: 'component.globalHeader.help' })}>
+      <Tooltip
+        title={formatMessage({
+          id: 'component.globalHeader.help',
+        })}
+      >
         <a
           target="_blank"
           href="https://pro.ant.design/docs/getting-started"
@@ -42,6 +47,7 @@ const GlobalHeaderRight = props => {
           <Icon type="question-circle-o" />
         </a>
       </Tooltip>
+      <NoticeIconView />
       <AvatarDropdown />
       <SelectLang className={styles.action} />
     </div>
